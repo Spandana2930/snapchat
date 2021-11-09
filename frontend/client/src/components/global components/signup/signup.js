@@ -1,16 +1,39 @@
 import React, { Component ,useState} from "react";
-
+import Control from "../../controller/control"
 import Button from "../../resuable components/button"
 
 function Signup () {
     const submitDetails = () => {
-        const body = { firstName, lastName, email, password, password };
+        const body = { firstName, lastName,userName,password,place,phoneNumber,month,day,year};
         console.log(body);
+        let url = "http://localhost:1109/data";
+
+      const success = (res) => {
+        console.log("Success", res);
+        alert("User created successfully")
       };
+      const failure = (err) => {
+        console.log("Error", err);
+      };
+      Control.sendRequest(
+        url,
+        "post",
+        body,
+        false,
+        null,
+        success,
+        failure
+      );  
+};
     const[firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [userName,setUserName]= useState("")
     const [password, setPassword] = useState("")
-    const [email, setUserName] = useState("")
+    const [place, setPlace] = useState("")
+    const [phoneNumber,setPhonenumber]=useState("")
+    const [month,setMonth] = useState("")
+    const [day,setDay] = useState("")
+    const [year,setYear] = useState("")
     return (
       <>
         <div className="container d-flex flex-column align-items-center mt-5" >
@@ -45,7 +68,7 @@ function Signup () {
               onChange = {(event)=>setPassword(event.target.value)}
             />
             <div style={{ width: "40rem" }} className="d-flex flex-row">
-              <select id="selectNumber" className="form-control">
+              <select id="selectNumber" className="form-control"  onChange = {(event)=>setPlace(event.target.value)}>
                 <option value="1">US</option>
                 <option value="2">IN</option>
               </select>
@@ -53,10 +76,11 @@ function Signup () {
                 type="number"
                 className="form-control "
                 placeholder="Enter Phone Number"
+                onChange = {(event)=>setPhonenumber(event.target.value)}
               />
             </div>
             <div style={{width:"40rem"}}  className="d-flex flex-row mt-3">
-              <select id="selectMonth" className="form-control">
+              <select id="selectMonth" className="form-control"  onChange = {(event)=>setMonth(event.target.value)}>
                 <option value="1">Jan</option>
                 <option value="2">Feb</option>
                 <option value="3">Mar</option>
@@ -70,11 +94,11 @@ function Signup () {
                 <option value="11">Nov</option>
                 <option value="12">Dec</option>
               </select>
-              <select id="selectDay" className="form-control">
+              <select id="selectDay" className="form-control"  onChange = {(event)=>setDay(event.target.value)}>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
-              <select id="selectYear" className="form-control">
+              <select id="selectYear" className="form-control"  onChange = {(event)=>setYear(event.target.value)}>
                 <option value="1">1999</option>
                 <option value="2">2000</option>
               </select>
