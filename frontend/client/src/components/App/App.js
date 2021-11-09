@@ -1,13 +1,12 @@
 import React from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Landing from "../global components/landing/landing";
 
+// import {Login} from "../global components/login/login;"
 
-// function LandingPage(component,name){
-//   return <component/> 
-// }
-
+import './App.css';
+import Landing from "../global components/landing/landing"
+import Signup from "../global components/signup/signup"
 function App() {
   return (
     <>
@@ -15,6 +14,10 @@ function App() {
       <Switch>
         <Route exact path = "/"
         render = {()=><Landing/>}/>
+      </Switch>
+      <Switch>
+        <Route exact path = "/signup"
+        render = {()=><Signup/>}/>
       </Switch>
     </Router>
     </>
