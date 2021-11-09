@@ -13,7 +13,7 @@ function Signup () {
     const [email, setUserName] = useState("")
     return (
       <>
-        <div className="container d-flex flex-column align-items-center mt-5">
+        <div className="container d-flex flex-column align-items-center mt-5" >
           <div className="card d-flex flex-column align-items-center p-3 shadow-lg">
           <i className="fab fa-snapchat-ghost fa-3x text-center" style={{color:"yellow"}}></i>
             <h1>Sign Up for Snapchat</h1>
