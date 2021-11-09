@@ -2,12 +2,14 @@ import React from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import {Login} from "../global components/login/login;"
+
 import './App.css';
 
 function App() {
   return (
     <>
-    <h1>UGF5H4GF</h1>
+    <Login />
     </>
    
   );
