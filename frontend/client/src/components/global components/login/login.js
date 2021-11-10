@@ -6,25 +6,27 @@ import Button from "../signup/resuable components/button";
 function Login() {
   const onSubmit = () => {
     const success = (data)=>{
-      if(data.length===0){
+      if(data.length==0){
       setError("Invalid credentials")
       }
       else{
         setError("")
+        
       }
       
       console.log(data)
+      
     }
     const failure = (err)=>{
       console.log(err)
     }
-    const body = {user_name:username, password:password};
+    const body = {userName, password};
     let url = " http://localhost:1109/validateDetails" 
    
     controller.sendRequest(url,"post",body,false,null,success,failure)   
     console.log(body);
   };
-  const [username, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState("");
   return (

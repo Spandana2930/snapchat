@@ -7,11 +7,13 @@ const mongoose = require('mongoose')
  */
 
 const UserSchema = new mongoose.Schema({
-    user_name:{type:String,required:true}, 
+    userName:{type:String,required:true}, 
     password:{type:String,required:true}, 
-    first_name:{type:String,required:true},
-    last_name:{type:String,required:true},
-    phone_number:{type:Number}
+    firstName:{type:String,required:true},
+    lastName:{type:String,required:true},
+    phoneNumber:{type:Number},
+    bday:{type:String},
+    email:{type:String,required:true}
    
 });
 //assigning model to const variable
