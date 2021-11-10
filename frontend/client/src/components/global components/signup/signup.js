@@ -1,13 +1,12 @@
 import React, { Component, useState } from "react";
-import Control from "../../controller/control"
-import Button from "../../resuable components/button"
+import Controller from "../../controller/control"
 import PhoneInput from "react-phone-number-input";
 
 function Signup() {
   const validateEmail =(email)=>
 {
   let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (email.match(regexEmail)) {
+  if (email.match   (regexEmail)) {
     return true; 
   } else {
     return false; 
@@ -50,37 +49,41 @@ const isNumber=(pswd)=>{
     }
 }
 
-const validate=()=>{
+const validate=(password)=>{
     // let pswd=this.state.password
     let length=password.length;
-    console.log(length)
+    
     if(length>=8 && isUpper(password) && isLower(password) && specialTest(password) && isNumber(password))
     {
         console.log("Strong password")
-        // setValidateMsg("strong password")
+        setValidateMsg("strong password")
         return true
     }
     else{
         console.log("Please enter a valid password")
-      //  setValidateMsg("Please enter a valid password")
+       setValidateMsg("Please enter a valid password")
        return false
     }
+    setValidateMsg("")
     }
   const submitDetails = () => {
-    if(validate(password) && validateEmail(email)){
-    const body = { firstName, lastName, userName,email, password, phoneNumber, bday };
-    console.log(body);
-    console.log(typeof (bday))
-    let url = "http://localhost:1109/data";
+    
+    if(validateEmail(email) && validate(password) && check ){
+      const body = { firstName, lastName, userName,email, password, phoneNumber, bday };
+      console.log(body);
+   
+    let url = "http://localhost:1109/userPostData";
 
     const success = (data) => {
-      console.log("Success", data);
-      alert("User created successfully")
+      if(data){
+      setError("User created successfully")
+      }
+      setError("")
     };
     const failure = (err) => {
       console.log("Error", err);
     };
-    Control.sendRequest(
+    Controller.sendRequest(
       url,
       "post",
       body,
@@ -89,17 +92,19 @@ const validate=()=>{
       success,
       failure
     );
-  };
+    }
 }
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [userName, setUserName] = useState("")
   const [email,setEmail]= useState("")
   const [password, setPassword] = useState("")
-  const [place, setPlace] = useState("")
   const [phoneNumber, setPhonenumber] = useState("")
   const [bday, setBirthday] = useState("")
   const [validatemsg,setValidateMsg]=useState("");
+  const [error,setError] = useState("")
+  const [check,setCheck] = useState("false")
+  const [color,setColor] = useState("")
   return (
     <>
       <div className="container d-flex flex-column align-items-center mt-5" >
@@ -132,11 +137,12 @@ const validate=()=>{
             type="password"
             className="form-control mb-3"
             placeholder="Enter Password"
-            onChange={(event) => {setPassword(event.target.value)
-            validate(event.target.value)
-            }}
+            onChange={(event) =>{
+               setPassword(event.target.value)
+               validate(event.target.value)
+              }}
           />
-          <p>{validatemsg}</p>
+          <p className="flex-start" style={{fontSize:"5px",float:"left"}}>{validatemsg}</p>
           <div style={{ width: "40rem" }} className="d-flex flex-row">
             <PhoneInput
               className="form-control "
@@ -149,10 +155,12 @@ const validate=()=>{
             <input type="date" name="birthday" className="form-control" onChange={(event)=>setBirthday(event.target.value)} />
           </div>
           <div style={{ width: "40rem" }} className="d-flex flex-row mt-3" >
+            <input type = "checkbox" onClick ={()=> setCheck(!check)}/>
             <p className="font-weight-bold" style={{ fontSize: "10px" }}>By tapping Sign Up & Accept, you acknowledge that you have read the Privacy Policy and agree to the Terms of Service. We'll send you a message to verify this number. Messaging rates may apply. Snapchatters can always capture or save your messages, such as by taking a screenshot or using a camera. Be mindful of what you Snap!</p>
           </div>
-          <div className="d-flex flex-row justify-content-center mt-3">
+          <div className="d-flex flex-column justify-content-center mt-3">
             <button className="btn btn-primary" onClick={() => submitDetails()}>SignUp & Accept </button>
+          <p style = {{}}>{error}</p>
           </div>
         </div>
       </div>

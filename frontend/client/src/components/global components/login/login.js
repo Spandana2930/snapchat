@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import Control from '../../controller/control'
-import Button from "../../resuable components/button";
+
 
 function Login() {
   const onSubmit = () => {
@@ -43,6 +43,7 @@ function Login() {
 
   const [key, setValue] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
   return (
     <>
       <div className="container mt-5">
@@ -83,14 +84,17 @@ function Login() {
                 <Link to="/">
                   <p className="col-12 text-right">Forgot Password</p>
                 </Link>
-                <div className="d-flex flex-row justify-content-center">
+                <div className="d-flex flex-column align-items-center">
                   <button
                     className="btn btn-primary"
                     onClick={() => onSubmit()}
                   >
                     Submit
                   </button>
+                  
                 </div>
+                <p className = "text-danger">{error}</p>
+                
               </div>
             </div>
           </div>

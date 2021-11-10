@@ -11,13 +11,13 @@ require("./database/connect")
 
 // app.use('/',userSchemadata)
 
-app.post('/data', (req, res) => {
+app.post('/userPostData', (req, res) => {
     console.log(req.body)
     userSchemadata.insertMany(req.body)
     res.send("done")
 })
 
-app.post('/login', (req, res) => {
+app.post('/validateDetails', (req, res) => {
     console.log(req.body)
     userSchemadata.find(req.body, (err, data) => res.status(200).send(data))
 
