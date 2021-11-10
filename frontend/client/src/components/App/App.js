@@ -11,21 +11,21 @@ import Login from "../global components/login/login"
 function App() {
   return (
     <>
-    <Router>
-      <Switch>
-        <Route exact path = "/"
-        render = {()=><Landing/>}/>
-     
-        <Route exact path = "/signup"
-        render = {()=><Signup/>}/>
-     
-    
-        <Route exact path = "/login"
-        render = {()=><Login/>}/>
-       </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/"
+            render={() => <Landing />} />
+
+          <Route exact path="/signup"
+            render={() => <Signup />} />
+
+
+          <Route exact path="/login"
+            render={() => <Login />} />
+        </Switch>
+      </Router>
     </>
-   
+
   );
 }
 

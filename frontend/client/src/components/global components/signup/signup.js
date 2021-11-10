@@ -56,13 +56,13 @@ const validate=()=>{
     console.log(length)
     if(length>=8 && isUpper(password) && isLower(password) && specialTest(password) && isNumber(password))
     {
-        // console.log("Strong password")
-        setValidateMsg("strong password")
+        console.log("Strong password")
+        // setValidateMsg("strong password")
         return true
     }
     else{
-        // console.log("Please enter a valid password")
-       setValidateMsg("Please enter a valid password")
+        console.log("Please enter a valid password")
+      //  setValidateMsg("Please enter a valid password")
        return false
     }
     }
@@ -73,8 +73,8 @@ const validate=()=>{
     console.log(typeof (bday))
     let url = "http://localhost:1109/data";
 
-    const success = (res) => {
-      console.log("Success", res);
+    const success = (data) => {
+      console.log("Success", data);
       alert("User created successfully")
     };
     const failure = (err) => {
@@ -132,8 +132,11 @@ const validate=()=>{
             type="password"
             className="form-control mb-3"
             placeholder="Enter Password"
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event) => {setPassword(event.target.value)
+            validate(event.target.value)
+            }}
           />
+          <p>{validatemsg}</p>
           <div style={{ width: "40rem" }} className="d-flex flex-row">
             <PhoneInput
               className="form-control "

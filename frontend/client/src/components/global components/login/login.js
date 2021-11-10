@@ -5,13 +5,26 @@ import Button from "../../resuable components/button";
 
 function Login() {
   const onSubmit = () => {
-    const body = {email, password};      
+    var body;
+    if(key.search('@')==true)
+    {
+      let email=key
+      body={email,password}
+    }
+    else
+    {
+      let userName=key
+      body={userName,password}
+    }
+   
     console.log(body);
     let url = "http://localhost:1109/login";
-
-    const success = (res) => {
-      console.log("Success", res);
-      window.location.href="/"
+    const success = (data) => {
+      if (data.length == 0) {
+        alert("Invalid credentials")
+      }
+      console.log("Success", data);
+      window.location.href = "/"
     };
     const failure = (err) => {
       console.log("Error", err);
@@ -28,7 +41,7 @@ function Login() {
     );
   };
 
-  const [email, setEmail] = useState("");
+  const [key, setValue] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>
@@ -49,16 +62,16 @@ function Login() {
                   for="email"
                   className="col-12 font-weight-bold"
                   style={{ fontSize: "10px" }}
-                  
+
                 >
                   Username or Email
                 </label>
-                <input className="form-control col-12" id="email" type="text" onChange={(event) => setEmail(event.target.value)}/>
+                <input className="form-control col-12" id="email" type="text" onChange={(event) => setValue(event.target.value)} />
                 <label
                   for="passsword"
                   className="col-12 font-weight-bold"
                   style={{ fontSize: "10px" }}
-                  >
+                >
                   Password
                 </label>
                 <input
@@ -68,7 +81,7 @@ function Login() {
                   onChange={(event) => setPassword(event.target.value)}
                 />
                 <Link to="/">
-                  <p className="col-12 text-right">Forget Password</p>
+                  <p className="col-12 text-right">Forgot Password</p>
                 </Link>
                 <div className="d-flex flex-row justify-content-center">
                   <button
