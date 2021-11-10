@@ -67,7 +67,7 @@ const validate=(password)=>{
     setValidateMsg("")
     }
   const submitDetails = () => {
-    
+    setButton(true)
     if(validateEmail(email) && validate(password) && check ){
       const body = { firstName, lastName, userName,email, password, phoneNumber, bday };
       console.log(body);
@@ -104,8 +104,8 @@ const validate=(password)=>{
   const [bday, setBirthday] = useState("")
   const [validatemsg,setValidateMsg]=useState("");
   const [error,setError] = useState("")
-  const [check,setCheck] = useState("false")
-  const [color,setColor] = useState("")
+  const [check,setCheck] = useState(false)
+  const [buttonClick,setButton] = useState(false)
   return (
     <>
       <div className="container d-flex flex-column align-items-center mt-5" >
@@ -161,7 +161,7 @@ const validate=(password)=>{
           </div>
           <div className="d-flex flex-column justify-content-center mt-3">
             <button className="btn btn-primary" onClick={() => submitDetails()}>SignUp & Accept </button>
-          <p style = {{}}>{error}</p>
+          {buttonClick?check?"":(<p style={{color:"red"}}>please accept terms and conditions</p>):("")}
           </div>
         </div>
       </div>
