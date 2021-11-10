@@ -1,11 +1,22 @@
 import React, { Component ,useState} from "react";
+import controller from "../../controller";
 
-import Button from "../../resuable components/button"
+import Button from "./resuable components/button"
 
 function Signup () {
     const submitDetails = () => {
-        const body = { firstName, lastName, email, password, password };
+        const body = { first_name:firstName, last_name:lastName, user_name:email, password:password };
         console.log(body);
+        const success = (data)=>{
+            console.log(data)
+        }
+        const failure = (err)=>{
+            console.log(err)
+        }
+       
+        let url = " http://localhost:1109/userPostData"
+        controller.sendRequest(url,"post",body,false,null,success,failure)
+
       };
     const[firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")

@@ -1,15 +1,32 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
-
-import Button from "../../resuable components/button";
+import controller from "../../controller";
+import Button from "../signup/resuable components/button";
 
 function Login() {
   const onSubmit = () => {
-    const body = {username, password};      
+    const success = (data)=>{
+      if(data.length===0){
+      setError("Invalid credentials")
+      }
+      else{
+        setError("")
+      }
+      
+      console.log(data)
+    }
+    const failure = (err)=>{
+      console.log(err)
+    }
+    const body = {user_name:username, password:password};
+    let url = " http://localhost:1109/validateDetails" 
+   
+    controller.sendRequest(url,"post",body,false,null,success,failure)   
     console.log(body);
   };
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
   return (
     <>
       <div className="container mt-5">
@@ -50,14 +67,17 @@ function Login() {
                 <Link to="/">
                   <p className="col-12 text-right">Forget Password</p>
                 </Link>
-                <div className="d-flex flex-row justify-content-center">
+                <div className="d-flex flex-column align-items-center">
                   <button
                     className="btn btn-primary"
                     onClick={() => onSubmit()}
                   >
                     Submit
                   </button>
+                  
                 </div>
+                <p className = "text-danger">{error}</p>
+                
               </div>
             </div>
           </div>
