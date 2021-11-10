@@ -5,10 +5,10 @@ import Button from "../../resuable components/button";
 
 function Login() {
   const onSubmit = () => {
-    const body = {username, password};      
+    const body = {userName, password};      
     console.log(body);
   };
-  const [username, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>

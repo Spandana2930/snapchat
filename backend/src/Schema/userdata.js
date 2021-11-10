@@ -4,12 +4,10 @@ const userSchema=new mongoose.Schema({
   firstName:{type:String,required:true},
   lastName:{type:String,required:true},
   userName:{type:String,required:true},
+  email:{type:String,required:true},
   password:{type:String,required:true},
-  place:{type:String},
   phoneNumber:{type:Number},
-  month:{type:String},
-  day:{type:Number},
-  year:{type:Number}
+  bday:{type:String},
 })
 
 const User=mongoose.model('User',userSchema)
