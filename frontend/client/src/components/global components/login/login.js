@@ -1,14 +1,34 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Control from '../../controller/control'
 import Button from "../../resuable components/button";
 
 function Login() {
   const onSubmit = () => {
-    const body = {userName, password};      
+    const body = {email, password};      
     console.log(body);
+    let url = "http://localhost:1109/login";
+
+    const success = (res) => {
+      console.log("Success", res);
+      window.location.href="/"
+    };
+    const failure = (err) => {
+      console.log("Error", err);
+      alert("Invalid email or password")
+    };
+    Control.sendRequest(
+      url,
+      "post",
+      body,
+      false,
+      null,
+      success,
+      failure
+    );
   };
-  const [userName, setUserName] = useState("");
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>
@@ -33,7 +53,7 @@ function Login() {
                 >
                   Username or Email
                 </label>
-                <input className="form-control col-12" id="email" type="text" onChange={(event) => setUserName(event.target.value)}/>
+                <input className="form-control col-12" id="email" type="text" onChange={(event) => setEmail(event.target.value)}/>
                 <label
                   for="passsword"
                   className="col-12 font-weight-bold"
