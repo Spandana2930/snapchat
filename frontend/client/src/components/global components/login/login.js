@@ -2,7 +2,6 @@ import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import controller from "../../controller";
 import Button from "../signup/resuable components/button";
-import PhoneInput from "react-phone-number-input";
 import Signup from "../signup/signup";
 
 function Login() {
@@ -82,12 +81,12 @@ function Login() {
                 </Link>
 
                 <div className="d-flex flex-column align-items-center">
-                  <button
+                  <Button
                     className="btn btn-primary"
-                    onClick={() => onSubmit()}
-                  >
-                    Submit
-                  </button>
+                    handleClick={() => onSubmit()}
+                    value="Submit"
+                  />
+                    
                 </div>
                 <p className="text-danger">{error}</p>
                 {invalidDetails ? <a href="./signup">Create account</a> : ""}
