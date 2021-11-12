@@ -1,6 +1,7 @@
-//import React Component from react library
+//Importing React Component from react library
 import React, { useState } from "react";
-//import User Components from Local Files
+
+//Importing User Components from Local Files
 import controller from "../../controller/control"
 import PhoneInput from "react-phone-number-input";
 import Login from "../login/login"
@@ -8,8 +9,13 @@ import Button from "../../resuable components/button"
 
 /**
  * @author:"Akhilasai and Spandana"
- * 
- * @returns 
+ * @returns {Html}
+ * Creating a functional component and returns UI on the browser.
+ * Implementation of Signup Component having email validation and password validation.
+ * Created Function for password validation , password validation required many functions to check conditions.  
+ * We checked the input string must contain Uppercase characters,Lowercase characters,Numbers and Special CHracters characters.
+ * We checked the email is valid or invalid.Email should contain '@' symbol and so on...
+ * Created Two page Registration in Single Page using States.
  */
 
 function Signup() {
@@ -214,7 +220,5 @@ function Signup() {
 }
 
 
-
-
-
+//Exporting File
 export default Signup;

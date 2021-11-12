@@ -1,10 +1,15 @@
 import React from 'react';
+//Importing Required Components
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import 'react-phone-number-input/style.css'
 
+/**
+ * @authors:"Akhilasai and spandana"
+ * Main File for React Application.
+ */
 ReactDOM.render(
   <React.StrictMode>
     <App />

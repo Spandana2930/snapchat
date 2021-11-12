@@ -1,8 +1,16 @@
+//Importing Express and Mongoose
 const express = require('express')
 const mongoose = require('mongoose')
+
+//Assiging Express to varaible app
 const app = express();
+
+// Created use function to get body i.e data
 app.use(express.json())
+
+//Assigning port number to port varaible
 const port = 1109;
+
 // const userRoutes = require('./src/routes/userRoutes')
 const cors = require('cors')
 app.use(cors())
@@ -11,7 +19,7 @@ const userroutes = require('../routes/router')
 app.use("/",userroutes)
 app.use(express.urlencoded({extended: true}))
 
-
+//Connecting to mongodb using url.
 mongoose.connect("mongodb+srv://athumma:Akhila%40123@cluster0.iiybw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 
 {

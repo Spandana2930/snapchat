@@ -1,9 +1,20 @@
+//Importing React component from React Library
 import React, { Component, useState } from "react";
+
+//Importing Link from React Router Dom
 import { Link } from "react-router-dom";
+
+//Importing User Components from Local Files
 import controller from "../../controller";
 import Signup from "../signup/signup"
 import Button from "../../resuable components/button"
 
+/**
+ * @authors:"Akhilasai and Spandana"
+ * @returns {Html}
+ * Creating a functional component and returns UI on the browser.
+ * Implementation of Login Component using States.
+ */
 function Login() {
   const onSubmit = () => {
     const success = (data)=>{

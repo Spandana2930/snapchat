@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Created Schema as per given data.
 const userSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },

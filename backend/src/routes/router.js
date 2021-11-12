@@ -1,3 +1,4 @@
+//Importing express and router
 const express = require('express');
 const user = require('../schema/userschema');
 const router = new express.Router();
