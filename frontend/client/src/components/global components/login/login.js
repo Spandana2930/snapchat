@@ -3,41 +3,42 @@ import { Link } from "react-router-dom";
 import controller from "../../controller";
 import Button from "../signup/resuable components/button";
 import PhoneInput from "react-phone-number-input";
-import Signup from "../signup/signup"
+import Signup from "../signup/signup";
 
 function Login() {
   const onSubmit = () => {
-    const success = (data)=>{
-      console.log(data)
-      if(data.length==0){
-      setError("Invalid credentials")
-      setSignupVisible(true)
+    const success = (data) => {
+      console.log(data);
+      if (data.length == 0) {
+        setInvalidDetails(true);
+        setError("Invalid credentials");
+        // setSignupVisible(true)
+      } else {
+        setError("");
+
+        window.location.href = "./dashboard";
       }
-      else{
-        setError("")
-        
-        
-      }
-      
-      console.log(data)
-      
-    }
-    const failure = (err)=>{
-      console.log(err)
-    }
-    const body = {userName, password};
-    let url = " http://localhost:1109/validateDetails" 
-   
-    controller.sendRequest(url,"post",body,false,null,success,failure)   
+
+      console.log(data);
+    };
+    const failure = (err) => {
+      console.log(err);
+    };
+    const body = { userName, password };
+    let url = " http://localhost:1109/validateDetails";
+
+    controller.sendRequest(url, "post", body, false, null, success, failure);
     console.log(body);
   };
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [error,setError] = useState("");
-  const [signupVisible,setSignupVisible] = useState(false);
+  const [error, setError] = useState("");
+  const [signupVisible, setSignupVisible] = useState(false);
+  const [invalidDetails, setInvalidDetails] = useState(false);
+
   return (
     <>
-    {!signupVisible?(<><div className="container mt-5">
+      <div className="container mt-5">
         <div className="row d-flex flex-row justify-content-center align-items-center">
           <div className="d-flex flex-column justify-content-center">
             <div
@@ -54,16 +55,20 @@ function Login() {
                   for="email"
                   className="col-12 font-weight-bold"
                   style={{ fontSize: "10px" }}
-                  
                 >
                   Username or Email
                 </label>
-                <input className="form-control col-12" id="email" type="text" onChange={(event) => setUserName(event.target.value)}/>
+                <input
+                  className="form-control col-12"
+                  id="email"
+                  type="text"
+                  onChange={(event) => setUserName(event.target.value)}
+                />
                 <label
                   for="passsword"
                   className="col-12 font-weight-bold"
                   style={{ fontSize: "10px" }}
-                  >
+                >
                   Password
                 </label>
                 <input
@@ -72,9 +77,10 @@ function Login() {
                   type="password"
                   onChange={(event) => setPassword(event.target.value)}
                 />
-                <Link to="/">
-                  <p className="col-12 text-right">Forget Password</p>
+                <Link to="/forget">
+                  <p className="col-12 text-right">Forget Password?</p>
                 </Link>
+
                 <div className="d-flex flex-column align-items-center">
                   <button
                     className="btn btn-primary"
@@ -82,28 +88,16 @@ function Login() {
                   >
                     Submit
                   </button>
-                  
                 </div>
-                <p className = "text-danger">{error}</p>
-                
+                <p className="text-danger">{error}</p>
+                {invalidDetails ? <a href="./signup">Create account</a> : ""}
               </div>
             </div>
           </div>
         </div>
-      </div></>):(<Signup/>)}
-   
-      
-      
-     
+      </div>
     </>
   );
 }
-
-
-
-
-
-
-
 
 export default Login;
