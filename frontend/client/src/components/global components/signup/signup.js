@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
-import Controller from "../../controller/control"
+import controller from "../../controller/control"
 import PhoneInput from "react-phone-number-input";
+import { Link } from "react-router-dom";
+import Login from "../login/login"
 
 function Signup() {
   const validateEmail =(email)=>
@@ -68,22 +70,27 @@ const validate=(password)=>{
     }
   const submitDetails = () => {
     setButton(true)
+
     if(validateEmail(email) && validate(password) && check ){
       const body = { firstName, lastName, userName,email, password, phoneNumber, bday };
-      console.log(body);
+      
    
     let url = "http://localhost:1109/userPostData";
 
     const success = (data) => {
+      console.log(data)
       if(data){
       setError("User created successfully")
+      setSignupVisible(false)
+      
       }
       setError("")
+      
     };
     const failure = (err) => {
       console.log("Error", err);
     };
-    Controller.sendRequest(
+    controller.sendRequest(
       url,
       "post",
       body,
@@ -106,9 +113,10 @@ const validate=(password)=>{
   const [error,setError] = useState("")
   const [check,setCheck] = useState(false)
   const [buttonClick,setButton] = useState(false)
+  const [signupVisible,setSignupVisible] = useState(true);
   return (
     <>
-      <div className="container d-flex flex-column align-items-center mt-5" >
+    {signupVisible?(<> <div className="container d-flex flex-column align-items-center mt-5" >
         <div className="card d-flex flex-column align-items-center p-3 shadow-lg">
           <i className="fab fa-snapchat-ghost fa-3x text-center" style={{ color: "yellow" }}></i>
           <h1>Sign Up for Snapchat</h1>
@@ -162,12 +170,18 @@ const validate=(password)=>{
           <div className="d-flex flex-column justify-content-center mt-3">
             <button className="btn btn-primary" onClick={() => submitDetails()}>SignUp & Accept </button>
           {buttonClick?check?"":(<p style={{color:"red"}}>please accept terms and conditions</p>):("")}
+          {buttonClick?check?(<p style = {{color:"green"}}>User created sucessfully</p>):"":""}
+          
           </div>
         </div>
-      </div>
+      </div></>):(<Login/>)}
+      
     </>
   );
 }
+
+
+
 
 
 export default Signup;

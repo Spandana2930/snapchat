@@ -2,15 +2,20 @@ import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import controller from "../../controller";
 import Button from "../signup/resuable components/button";
+import PhoneInput from "react-phone-number-input";
+import Signup from "../signup/signup"
 
 function Login() {
   const onSubmit = () => {
     const success = (data)=>{
+      console.log(data)
       if(data.length==0){
       setError("Invalid credentials")
+      setSignupVisible(true)
       }
       else{
         setError("")
+        
         
       }
       
@@ -29,9 +34,10 @@ function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState("");
+  const [signupVisible,setSignupVisible] = useState(false);
   return (
     <>
-      <div className="container mt-5">
+    {!signupVisible?(<><div className="container mt-5">
         <div className="row d-flex flex-row justify-content-center align-items-center">
           <div className="d-flex flex-column justify-content-center">
             <div
@@ -84,9 +90,20 @@ function Login() {
             </div>
           </div>
         </div>
-      </div>
+      </div></>):(<Signup/>)}
+   
+      
+      
+     
     </>
   );
 }
+
+
+
+
+
+
+
 
 export default Login;
