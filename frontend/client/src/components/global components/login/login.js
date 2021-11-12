@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import Control from '../../controller/control'
-
+import Button from "../../resuable components/button"
 
 function Login() {
   const onSubmit = () => {
@@ -21,7 +21,7 @@ function Login() {
     let url = "http://localhost:1109/login";
     const success = (data) => {
       if (data.length == 0) {
-        alert("Invalid credentials")
+        setError("Invalid credentials")
       }
       console.log("Success", data);
       window.location.href = "/"
@@ -41,6 +41,11 @@ function Login() {
     );
   };
 
+
+
+  // function save(event) {
+  //   saveData(event.target.value);
+  // }
   const [key, setValue] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState("");
@@ -85,13 +90,13 @@ function Login() {
                   <p className="col-12 text-right">Forgot Password</p>
                 </Link>
                 <div className="d-flex flex-column align-items-center">
-                  <button
+                  {/* <button
                     className="btn btn-primary"
                     onClick={() => onSubmit()}
                   >
                     Submit
-                  </button>
-                  
+                  </button> */}
+                  <Button className="btn btn-primary" onClick={onSubmit()} value="Login" ></Button>
                 </div>
                 <p className = "text-danger">{error}</p>
                 
