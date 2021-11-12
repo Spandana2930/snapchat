@@ -4,8 +4,8 @@ import React, { useState } from "react";
 //Importing User Components from Local Files
 import controller from "../../controller/control"
 import PhoneInput from "react-phone-number-input";
-import Login from "../login/login"
-import Button from "../../resuable components/button"
+// import Login from "../login/login"
+import Button from "./resuable components/button"
 
 /**
  * @author:"Akhilasai and Spandana"
@@ -81,7 +81,7 @@ function Signup() {
       return false
     }
   }
-  const submitDetails = () => {
+  const submitDetails = async() => {
     setButton(true)
 
     if (validateEmail(email) && check) {
@@ -103,7 +103,7 @@ function Signup() {
       const failure = (err) => {
         console.log("Error", err);
       };
-      controller.sendRequest(
+      await controller.sendRequest(
         url,
         "post",
         body,
@@ -112,6 +112,7 @@ function Signup() {
         success,
         failure
       );
+      window.location.href = "/login"
     }
   }
   const [firstName, setFirstName] = useState("")
