@@ -81,7 +81,7 @@ function Signup() {
       return false
     }
   }
-  const submitDetails = async() => {
+  const submitDetails = async () => {
     setButton(true)
 
     if (validateEmail(email) && check) {
@@ -155,7 +155,7 @@ function Signup() {
               />
             </div>
             <div className="d-flex flex-row justify-content-center ">
-              <Button className="btn btn-primary mr-3" value="back" handleClick={() =>{setVisible(false)}}></Button>
+              <Button className="btn btn-primary mr-3" value="back" handleClick={() => { setVisible(false) }}></Button>
               <Button className="btn btn-primary" handleClick={submitDetails} value="Signup"></Button>
             </div>
           </>) : (<><div style={{ width: "40rem" }} className="d-flex flex-row">
@@ -163,7 +163,7 @@ function Signup() {
               type="text"
               className="form-control mt-3 mb-3"
               placeholder="Enter First Name"
-              value = {firstName}
+              value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
             />
             <input
