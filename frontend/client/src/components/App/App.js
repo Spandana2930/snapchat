@@ -1,4 +1,7 @@
+//Importing React component from React Library
 import React from "react";
+
+//Importing Routing Components from React Router Dom
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./App.css";
@@ -25,4 +28,5 @@ function App() {
   );
 }
 
+//Exporting File
 export default App;

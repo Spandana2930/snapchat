@@ -1,4 +1,5 @@
 import React from 'react';
+//Importing Required Components
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
@@ -7,6 +8,10 @@ import 'react-phone-number-input/style.css'
 import {Provider} from "react-redux"
 import store from "./store";
 
+/**
+ * @authors:"Akhilasai and spandana"
+ * Main File for React Application.
+ */
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
