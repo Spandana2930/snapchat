@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import controller from "../../controller";
 import Button from "../signup/resuable components/button";
 import Signup from "../signup/signup";
-
+import Logininput from "../../resuable components/loginInput"
 function Login() {
   const onSubmit = () => {
     const success = (data) => {
@@ -57,11 +57,11 @@ function Login() {
                 >
                   Username or Email
                 </label>
-                <input
+                <Logininput
                   className="form-control col-12"
                   id="email"
                   type="text"
-                  onChange={(event) => setUserName(event.target.value)}
+                  handleChange={(child) => setUserName(child)}
                 />
                 <label
                   for="passsword"
@@ -70,11 +70,11 @@ function Login() {
                 >
                   Password
                 </label>
-                <input
+                <Logininput
                   className="form-control col-12"
                   id="password"
                   type="password"
-                  onChange={(event) => setPassword(event.target.value)}
+                  handleChange={(child) => setPassword(child)}
                 />
                 <Link to="/forget">
                   <p className="col-12 text-right">Forget Password?</p>
