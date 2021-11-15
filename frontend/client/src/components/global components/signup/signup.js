@@ -8,6 +8,7 @@ import Button from "../../resuable components/button";
 import Input from "../../resuable components/input";
 import {fetchSignupData} from "../../../store/actions"
 import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 /**
  * @author:"Akhilasai and Spandana"
  * @returns {Html}
@@ -21,6 +22,7 @@ import {useDispatch} from 'react-redux'
 
 export default function Signup() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const validateEmail = (email) => {
     let regexEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
     if (email.match(regexEmail)) {
@@ -102,11 +104,14 @@ export default function Signup() {
       let url = "http://localhost:1109/userPostData";
 
       const success = (data) => {
+        
         console.log(data);
         if (data) {
           dispatch(fetchSignupData(data))
           setError("User created successfully");
           setSignupVisible(false);
+          history.push('./login');
+
         }
         setError("");
       };
